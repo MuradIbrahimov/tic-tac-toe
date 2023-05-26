@@ -1,0 +1,32 @@
+body {
+  padding: 30px;
+  background-color: aqua;
+}
+.box-container {
+  width: 600px;
+  aspect-ratio: 1/1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.game-container h1 {
+  margin: 0px;
+}
+.box-container .box {
+  cursor: pointer;
+  background-color: #fff;
+  border: 2px solid black;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box-container span {
+  font-size: 40px;
+}
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}

@@ -40,6 +40,15 @@ function App() {
   };
   return (
     <>
+      {/* Decorative background X and O's */}
+      <div className="background-decor">
+        <span className="decor-x" style={{top: '8%', left: '10%'}}>X</span>
+        <span className="decor-o" style={{top: '20%', left: '70%'}}>O</span>
+        <span className="decor-x" style={{top: '60%', left: '80%', fontSize: '7vw', transform: 'rotate(10deg)'}}>X</span>
+        <span className="decor-o" style={{top: '75%', left: '15%', fontSize: '9vw', transform: 'rotate(-8deg)'}}>O</span>
+        <span className="decor-x" style={{top: '5%', left: '85%', fontSize: '6vw', transform: 'rotate(30deg)'}}>X</span>
+        <span className="decor-o" style={{top: '85%', left: '60%', fontSize: '8vw', transform: 'rotate(25deg)'}}>O</span>
+      </div>
       <div className="game-container">
         {winner && <h1>{winner + " Qalibdir"}</h1>}
         <section className="box-container">

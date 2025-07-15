@@ -2,29 +2,65 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  background: linear-gradient(135deg, #232526 0%, #414345 100%);
   font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative X and O background */
+.background-decor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.decor-x, .decor-o {
+  position: absolute;
+  font-size: 8vw;
+  font-weight: 900;
+  color: #1b0fff;
+  opacity: 0.75;
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+  text-shadow: 0 2px 12px #fff, 0 1px 0 #fff;
+}
+
+.decor-x {
+  transform: rotate(-18deg);
+  color: #47ff9454;
+}
+
+.decor-o {
+  color: #13b9f033;
+  transform: rotate(12deg);
 }
 
 .game-container {
-  background: #fff;
+  background: #23272f;
   border-radius: 24px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35);
   padding: 40px 32px 32px 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 340px;
   max-width: 90vw;
+  z-index: 3;
 }
 
 .game-container h1 {
   margin: 0 0 24px 0;
   font-size: 2rem;
-  color: #2d3a4b;
+  color: #fff;
   letter-spacing: 1px;
 }
 
@@ -41,10 +77,10 @@ body {
 
 .box-container .box {
   cursor: pointer;
-  background: #f7fafc;
-  border: 2px solid #bfc9d1;
+  background: #23272f;
+  border: 2px solid #444a57;
   border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,34 +90,34 @@ body {
 }
 
 .box-container .box:hover {
-  background: #e3eefd;
-  border-color: #6c63ff;
-  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.08);
+  background: #313543;
+  border-color: #47ff94;
+  box-shadow: 0 4px 16px rgba(71, 255, 148, 0.08);
 }
 
 .box-container span {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #6c63ff;
+  color: #47ff94;
   user-select: none;
 }
 
 .resetBtn {
   margin-top: 8px;
   padding: 12px 32px;
-  background: linear-gradient(90deg, #6c63ff 0%, #48c6ef 100%);
-  color: #fff;
+  background: linear-gradient(90deg, #47ff94 0%, #13b9f0 100%);
+  color: #23272f;
   border: none;
   border-radius: 24px;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 1px;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  box-shadow: 0 2px 8px rgba(71, 255, 148, 0.08);
   transition: background 0.2s, box-shadow 0.2s;
 }
 
 .resetBtn:hover {
-  background: linear-gradient(90deg, #48c6ef 0%, #6c63ff 100%);
-  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.12);
+  background: linear-gradient(90deg, #13b9f0 0%, #47ff94 100%);
+  box-shadow: 0 4px 16px rgba(19, 185, 240, 0.12);
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import "./App.css";
-
+import Player from "./component/Player";
 function App() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [winner, setWinner] = useState(null);
@@ -42,7 +42,7 @@ function App() {
     <>
     <Header />
       <div className="game-container">
-        <ol>
+        <ol className="player-list">  
           <Player name="Player 1" symbol="X" />
           <Player name="Player 2" symbol="O" />
         </ol>

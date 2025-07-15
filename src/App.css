@@ -156,3 +156,10 @@ body {
   background: linear-gradient(90deg, #13b9f0 0%, #47ff94 100%);
   box-shadow: 0 4px 16px rgba(19, 185, 240, 0.12);
 }
+
+.player-list {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+  list-style: none; /* Optional: removes numbers */
+}

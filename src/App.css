@@ -11,6 +11,41 @@ body {
   overflow: hidden;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(35, 39, 47, 0.7);
+  border-radius: 20px;
+  padding: 24px 32px 20px 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 32px 0 rgba(71, 255, 148, 0.08), 0 1.5px 0 #47ff94;
+  border: 1.5px solid #313543;
+  backdrop-filter: blur(6px);
+}
+.header img {
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 0 12px #47ff94cc) drop-shadow(0 0 2px #13b9f0cc);
+  border-radius: 16px;
+  object-fit: contain;
+  background: none;
+  padding: 0;
+  border: 2px solid #23272f;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+ .header h1 {
+   color: #47ff94;
+   font-size: 2.2rem;
+   font-weight: 900;
+   letter-spacing: 2px;
+   text-shadow: 0 2px 16px #13b9f0cc, 0 1px 0 #23272f;
+   margin: 0;
+   font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+ }
 /* Decorative X and O background */
 .background-decor {
   position: fixed;

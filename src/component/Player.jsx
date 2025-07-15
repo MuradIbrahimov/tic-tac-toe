@@ -11,12 +11,12 @@ export default function Player({name, symbol}) {
           {isEditing ? (
             <input className="player-input" type="text" value={newName} onChange={(e) => setNewName(e.target.value)} />
           ) : (
-            <span className="player-name"> {name}</span>
+            <span className="player-name"> {newName}</span>
           )}
           {isEditing ? (
-            <button className="player-btn save-btn" onClick={() => setIsEditing(!isEditing)}>Save</button>
+            <button className="player-btn save-btn" onClick={() => setIsEditing((isEditing) => !isEditing)}>Save</button>   
           ) : (
-            <button className="player-btn edit-btn" onClick={() => setIsEditing(!isEditing)}>Edit</button>
+            <button className="player-btn edit-btn" onClick={() => setIsEditing((isEditing) => !isEditing)}>Edit</button>
           )}
         </div>
       </li>

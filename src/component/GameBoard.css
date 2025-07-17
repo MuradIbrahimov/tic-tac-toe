@@ -1,0 +1,41 @@
+.game-board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: max-content;
+}
+
+.game-board > li > ol {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.box {
+  width: 60px;
+  height: 60px;
+  font-size: 2rem;
+  font-weight: bold;
+  background: #f0f0f0;
+  border: 2px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box:hover, .box:focus {
+  background: #e0e0e0;
+  box-shadow: 0 0 8px #aaa;
+}
+
+.box span {
+  user-select: none;
+} 

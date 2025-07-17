@@ -2,19 +2,14 @@ import { useState } from "react";
 import Header from "./Header";
 import "./App.css";
 import Player from "./component/Player";
+import GameBoard from "./component/GameBoard";
 function App() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
   const [winner, setWinner] = useState(null);
-  let [player, setPlayer] = useState(true);
-  const handleClick = (index) => {
-    if (winner) return;
-    let temp = [...squares];
-    temp[index] == null ? (temp[index] = player ? "X" : "O") : "";
-    setPlayer(!player);
-    setSquares(temp);
-    checkWinning(temp);
-    console.log(squares);
-  };
+  let [activePlayer, setActivePlayer] = useState('X');
+
+  function handleSelectSquare(){
+    setActivePlayer((curActivePlayer) => curActivePlayer ==='X' ? 'O' : 'X')
+  }
   const checkWinning = (data) => {
     const winPositions = [
       [0, 1, 2],
@@ -35,25 +30,18 @@ function App() {
     });
   };
   const resetGame = () => {
-    setSquares(Array(9).fill(null));
     setWinner(null);
   };
   return (
     <>
     <Header />
       <div className="game-container">
-        <ol className="player-list">  
-          <Player name="Player 1" symbol="X" />
-          <Player name="Player 2" symbol="O" />
+        <ol className="player-list highlight-player">  
+          <Player name="Player 1" symbol="X" isActive={activePlayer === "X" } />
+          <Player name="Player 2" symbol="O" isActive={activePlayer === "O" }  />
         </ol>
         {winner && <h1>{winner + " Qalibdir"}</h1>}
-        <section className="box-container">
-          {squares.map((a, b) => (
-            <div key={b} className="box" onClick={() => handleClick(b)}>
-              <span>{a}</span>
-            </div>
-          ))}
-        </section>
+       <GameBoard onSelectSquare={handleSelectSquare}  activePlayer={activePlayer}/>
         <button className="resetBtn" onClick={resetGame}>
           Reset
         </button>

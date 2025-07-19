@@ -3,35 +3,27 @@ import Header from "./Header";
 import "./App.css";
 import Player from "./component/Player";
 import GameBoard from "./component/GameBoard";
+import Log from "./component/Log";
 function App() {
-  const [winner, setWinner] = useState(null);
+  const [gameTurns, setGameTurns] = useState([])
   let [activePlayer, setActivePlayer] = useState('X');
 
-  function handleSelectSquare(){
+  function handleSelectSquare(rowIndex,colIndex){
+    
     setActivePlayer((curActivePlayer) => curActivePlayer ==='X' ? 'O' : 'X')
-  }
-  const checkWinning = (data) => {
-    const winPositions = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
+    setGameTurns(prevTurns=>{
+      let currentPlayer = 'X';
 
-    winPositions.map((position) => {
-      let [a, b, c] = position;
-      if (data[a] && data[a] === data[b] && data[b] === data[c]) {
-        setWinner(data[a]);
+      if (prevTurns.length>0 && prevTurns[0].player === 'X'){
+        currentPlayer = 'O';
       }
+      const updatedTurns = [{ square: {row : rowIndex, col: colIndex}, player : currentPlayer}, ...prevTurns,];
+
+      return updatedTurns;
     });
-  };
-  const resetGame = () => {
-    setWinner(null);
-  };
+  }
+ 
+  
   return (
     <>
     <Header />
@@ -40,12 +32,13 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={activePlayer === "X" } />
           <Player name="Player 2" symbol="O" isActive={activePlayer === "O" }  />
         </ol>
-        {winner && <h1>{winner + " Qalibdir"}</h1>}
-       <GameBoard onSelectSquare={handleSelectSquare}  activePlayer={activePlayer}/>
-        <button className="resetBtn" onClick={resetGame}>
+       
+       <GameBoard onSelectSquare={handleSelectSquare}  turns={gameTurns}/>
+        <button className="resetBtn" >
           Reset
         </button>
       </div>
+      <Log turns={gameTurns}></Log>
     </>
   );
 }

@@ -1,0 +1,335 @@
+/* Game Over Overlay */
+.game-over-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.game-over-overlay.visible {
+  opacity: 1;
+}
+
+/* Game Over Modal */
+.game-over-modal {
+  background: linear-gradient(135deg, rgba(35, 39, 47, 0.95) 0%, rgba(65, 67, 69, 0.95) 100%);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(71, 255, 148, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(71, 255, 148, 0.3);
+  max-width: 500px;
+  width: 90vw;
+  text-align: center;
+  transform: scale(0.8) translateY(50px);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: modalEntrance 0.8s ease-out forwards;
+}
+
+@keyframes modalEntrance {
+  0% {
+    transform: scale(0.8) translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Trophy Container */
+.trophy-container {
+  margin-bottom: 24px;
+  animation: trophyBounce 2s ease-in-out infinite;
+}
+
+@keyframes trophyBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.trophy {
+  display: inline-block;
+  position: relative;
+}
+
+.trophy-cup {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3));
+  animation: trophyGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes trophyGlow {
+  0% { filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.3)); }
+  100% { filter: drop-shadow(0 4px 16px rgba(255, 215, 0, 0.6)); }
+}
+
+.trophy-base {
+  width: 60px;
+  height: 8px;
+  background: linear-gradient(90deg, #ffd700, #ffed4e);
+  border-radius: 4px;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Game Over Title */
+.game-over-title {
+  margin: 0 0 32px 0;
+  position: relative;
+}
+
+.title-text {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #47ff94, #13b9f0, #47ff94);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGradient 3s ease-in-out infinite;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes titleGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.title-underline {
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #47ff94, #13b9f0);
+  border-radius: 2px;
+  margin: 8px auto 0;
+  animation: underlineExpand 1s ease-out 0.5s forwards;
+}
+
+@keyframes underlineExpand {
+  to { width: 100%; }
+}
+
+/* Winner Announcement */
+.winner-announcement {
+  margin-bottom: 32px;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.winner-symbol {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #47ff94;
+  text-shadow: 0 0 20px rgba(71, 255, 148, 0.5);
+  margin-bottom: 16px;
+  animation: symbolPulse 2s ease-in-out infinite;
+}
+
+@keyframes symbolPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.draw-symbol {
+  font-size: 4rem;
+  margin-bottom: 16px;
+  animation: symbolPulse 2s ease-in-out infinite;
+}
+
+.winner-text {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.player-label {
+  color: #47ff94;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.won-text {
+  color: #ffffff;
+}
+
+.draw-text {
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+}
+
+.celebration-emoji {
+  font-size: 2rem;
+  margin-top: 16px;
+  animation: emojiBounce 1s ease-in-out infinite;
+}
+
+@keyframes emojiBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* Restart Button */
+.restart-button {
+  position: relative;
+  padding: 16px 32px;
+  background: linear-gradient(45deg, #47ff94, #13b9f0);
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #23272f;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(71, 255, 148, 0.3);
+  animation: buttonEntrance 0.8s ease-out 0.6s both;
+}
+
+@keyframes buttonEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.restart-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(71, 255, 148, 0.4);
+  background: linear-gradient(45deg, #13b9f0, #47ff94);
+}
+
+.restart-button:active {
+  transform: translateY(0);
+}
+
+.button-text {
+  position: relative;
+  z-index: 2;
+  letter-spacing: 1px;
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.restart-button:hover .button-glow {
+  left: 100%;
+}
+
+/* Confetti Animation */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: -10px;
+  border-radius: 2px;
+  animation: confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-over-modal {
+    padding: 24px;
+    margin: 20px;
+  }
+  
+  .title-text {
+    font-size: 2.5rem;
+  }
+  
+  .winner-symbol,
+  .draw-symbol {
+    font-size: 3rem;
+  }
+  
+  .winner-text,
+  .draw-text {
+    font-size: 1.3rem;
+  }
+  
+  .trophy-cup {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-over-modal {
+    padding: 20px;
+  }
+  
+  .title-text {
+    font-size: 2rem;
+  }
+  
+  .winner-symbol,
+  .draw-symbol {
+    font-size: 2.5rem;
+  }
+  
+  .winner-text,
+  .draw-text {
+    font-size: 1.1rem;
+  }
+  
+  .restart-button {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+  }
+} 

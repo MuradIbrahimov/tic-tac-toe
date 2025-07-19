@@ -26,11 +26,10 @@ function App() {
     [null, null, null],
     [null, null, null],
 ]
-let gameBoard = initialGameBoard;
+let gameBoard = [...initialGameBoard.map(array =>[...array])];
 
 for (const turn of gameTurns){
     const {square, player} = turn;
-    console.log();
     
     const {row,col} = square;
     gameBoard[row][col] = player;
@@ -47,7 +46,7 @@ if (firstSquareSymbol && firstSquareSymbol===secondSquareSymbol && firstSquareSy
 
 
 }
-const draw= gameTurns.length === 9 & !winner; 
+const draw = gameTurns.length === 9 && !winner; 
   function handleSelectSquare(rowIndex,colIndex){
     
    
@@ -73,6 +72,7 @@ const draw= gameTurns.length === 9 & !winner;
           <Player name="Player 2" symbol="O" isActive={activePlayer === "O" }  />
         </ol>
        {winner && <p>You won {winner}</p>}
+       {draw && <p>It's a draw!</p>}
        <GameBoard onSelectSquare={handleSelectSquare}  turns={gameTurns} board={gameBoard}/>
         <button className="resetBtn" >
           Reset

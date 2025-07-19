@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../component/Player.css";
 
-export default function Player({name, symbol , isActive}) {
+export default function Player({name, symbol , isActive , isChanged}) {
    const [isEditing, setIsEditing] = useState(false);
    const [newName, setNewName] = useState(name);
+
+   // Update local state when name prop changes
+   useEffect(() => {
+     setNewName(name);
+   }, [name]);
+
+   const handleEditClick = () => {
+    setIsEditing((isEditing) => !isEditing)
+   }
+
+   const handleSaveClick = () => {
+    isChanged(symbol, newName)
+    setIsEditing(false)
+   }
     return (
       <li className={"player " + (isActive ? 'active' : '')} >
         <span className="player-symbol"> {symbol}</span>
@@ -14,9 +28,9 @@ export default function Player({name, symbol , isActive}) {
             <span className="player-name"> {newName}</span>
           )}
           {isEditing ? (
-            <button className="player-btn save-btn" onClick={() => setIsEditing((isEditing) => !isEditing)}>Save</button>   
+            <button className="player-btn save-btn" onClick={handleSaveClick}>Save</button>   
           ) : (
-            <button className="player-btn edit-btn" onClick={() => setIsEditing((isEditing) => !isEditing)}>Edit</button>
+            <button className="player-btn edit-btn" onClick={handleEditClick}>Edit</button>
           )}
         </div>
       </li>

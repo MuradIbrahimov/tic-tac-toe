@@ -47,7 +47,7 @@ const GameOver = ({ winner, onRestart }) => {
               <>
                 <div className="winner-symbol">{winner}</div>
                 <p className="winner-text">
-                  <span className="player-label">Player {winner}</span>
+                  <span className="player-label">{winner}</span>
                   <span className="won-text">has won!</span>
                 </p>
                 <div className="celebration-emoji">🎉</div>

@@ -20,6 +20,10 @@ function App() {
   // consts
   const [gameTurns, setGameTurns] = useState([])
   const activePlayer = deriveActivePlayer(gameTurns)
+  const [players,setPlayers] = useState({
+    'X':'Player 1',
+    'O':'Player 2'
+  })
 
   const initialGameBoard = [
     [null, null, null],
@@ -41,9 +45,8 @@ for (const combinations of WINNING_COMBINATIONS){
   const thirdSquareSymbol = gameBoard[combinations[2].row][combinations[2].column]
 
 if (firstSquareSymbol && firstSquareSymbol===secondSquareSymbol && firstSquareSymbol===thirdSquareSymbol){
-  winner = firstSquareSymbol
+  winner = players[firstSquareSymbol]
 }
-
 
 }
 const draw = gameTurns.length === 9 && !winner; 
@@ -58,6 +61,13 @@ const draw = gameTurns.length === 9 && !winner;
     });
   }
 
+ const handlePlayerChange = (symbol,playerName) =>{
+setPlayers((prev)=>{
+  return { ...prev,
+  [symbol]:playerName
+  }
+})
+ }
   function handleRestart() {
     setGameTurns([]);
   }
@@ -68,12 +78,12 @@ const draw = gameTurns.length === 9 && !winner;
     <Header />
       <div className="game-container">
         <ol className="player-list highlight-player">  
-          <Player name="Player 1" symbol="X" isActive={activePlayer === "X" } />
-          <Player name="Player 2" symbol="O" isActive={activePlayer === "O" }  />
+          <Player name={players.X} symbol="X" isActive={activePlayer === "X"} isChanged={handlePlayerChange} />
+          <Player name={players.O} symbol="O" isActive={activePlayer === "O" } isChanged={handlePlayerChange} />
         </ol>
-       {winner && <p>You won {winner}</p>}
-       {draw && <p>It's a draw!</p>}
-       <GameBoard onSelectSquare={handleSelectSquare}  turns={gameTurns} board={gameBoard}/>
+                {winner && <p>You won {winner}</p>}
+         {draw && <p>It's a draw!</p>}
+         <GameBoard onSelectSquare={handleSelectSquare}  turns={gameTurns} board={gameBoard}/>
         <button className="resetBtn" >
           Reset
         </button>

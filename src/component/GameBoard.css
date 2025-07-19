@@ -39,3 +39,6 @@
 .box span {
   user-select: none;
 } 
+button:disabled{
+  color:rgba(252, 0, 0, 0.753);
+}
